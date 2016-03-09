@@ -132,7 +132,7 @@ class DockerSpawner():
                     'bind': '/mnt/vol' + str(index),
                     'mode': permissions
                 }
-        app_log.degug('===========>' + base_path)
+        app_log.debug('===========>' + base_path)
         extra_hosts = dict(map(lambda h: tuple(h.split(':')),
                                container_config.extra_hosts))
 
