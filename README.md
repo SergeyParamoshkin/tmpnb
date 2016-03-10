@@ -130,9 +130,11 @@ orchestrate.py options:
   --host-directories               Mount the specified directory as a data
                                    volume, multiple         directories can be
                                    specified by using a comma-delimited string,
-                                   directory         path must provided in full
-                                   (eg: /home/steve/data/:r), permissions
-                                   default to         rw
+                                   directory path must provided in full
+                                   machine_volume:containers_volume:permisions,
+				   see docker https://docs.docker.com/engine/userguide/containers/dockervolumes/
+				   (eg. /tmp/data:/home/jovyan/work:rw) 
+    				   permissions default to         rw
   --host-network                   Attaches the containers to the host
                                    networking instead of the  default docker
                                    bridge. Affects the semantics of
