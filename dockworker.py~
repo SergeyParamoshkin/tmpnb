@@ -121,27 +121,19 @@ class DockerSpawner():
         if container_config.host_directories:
             directories = container_config.host_directories.split(",")
             for index, item in enumerate(directories):
-                directory = item.split(":")[0] + "/" + base_path 
-                bind_directory = item.split(":")[1]
+                directory = item.split(":")[0]
                 try:
-                    permissions = item.split(":")[2]
+                    permissions = item.split(":")[1]
                 except IndexError:
                     permissions = 'rw'
-                volumes.append(bind_directory)
-                app_log.info("append volumes:[%s:%s]",directory,bind_directory)    
-                '''
-                temporary solution:
-                hardcode user directory
-                '''
-                #d = "/home/jovyan/work"
-                '''
-                end temporary solution 
-                '''
+
+                volumes.append('/mnt/vol' + str(index))
+                bind_directory = directory + "/" + base_path
+                app_log.info("===========>" + bind_directory)
                 volume_bindings[directory] = {
-                    'bind': bind_directory,
+                    'bind': '/mnt/vol' + str(index),
                     'mode': permissions
                 }
-                app_log.info("volume_bindings {}".format(volume_bindings))
         extra_hosts = dict(map(lambda h: tuple(h.split(':')),
                                container_config.extra_hosts))
 
