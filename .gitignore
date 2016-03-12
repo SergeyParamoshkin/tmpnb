@@ -49,6 +49,8 @@ sdist/
 var/
 *.egg-info/
 .installed.cfg
+.idea
+.idea/*
 *.egg
 
 # Installer logs
